@@ -11,18 +11,18 @@ namespace TextChatMeow.MessageHandler
     internal class DisplayManager
     {
         private static Config Config => Plugin.Instance.Config;
-
-        private static readonly List<DisplayManager> MessagesManagers = new List<DisplayManager>();
+        
+        private static readonly List<DisplayManager> MessagesManagers = [];
         private static CoroutineHandle _autoUpdateCoroutine;
-
-        private readonly Hint _textChatTip = new Hint
+        private static readonly Hint hint = new()
         {
             Text = Config.ChatTip,
             YCoordinate = Config.MessageYCoordinate,
             Alignment = Config.MessageAlignment,
         };
-        private readonly List<Hint> _messageSlots = new List<Hint>()
-        {
+        private readonly Hint _textChatTip = hint;
+        private readonly List<Hint> _messageSlots =
+        [
             new() {
                 YCoordinate = Config.MessageYCoordinate + 25,
                 Alignment = Config.MessageAlignment,
@@ -38,7 +38,7 @@ namespace TextChatMeow.MessageHandler
                 Alignment = Config.MessageAlignment,
                 SyncSpeed = HintSyncSpeed.Fast
             }
-        };
+        ];
 
         private readonly DateTime _timeCreated = DateTime.Now;
         private readonly TimeSpan _tipTimeToDisplay = TimeSpan.FromSeconds(Plugin.Instance.Config.TipDisappearTime);
