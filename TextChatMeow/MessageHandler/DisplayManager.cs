@@ -1,8 +1,5 @@
 ﻿using Exiled.API.Features;
 using MEC;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Exiled.Events.EventArgs.Player;
 using HintServiceMeow.Core.Utilities;
 using TextChatMeow.Model;
@@ -26,20 +23,17 @@ namespace TextChatMeow.MessageHandler
         };
         private readonly List<Hint> _messageSlots = new List<Hint>()
         {
-            new Hint
-            {
+            new() {
                 YCoordinate = Config.MessageYCoordinate + 25,
                 Alignment = Config.MessageAlignment,
                 SyncSpeed = HintSyncSpeed.Fast
             },
-            new Hint
-            {
+            new() {
                 YCoordinate = Config.MessageYCoordinate + 50,
                 Alignment = Config.MessageAlignment,
                 SyncSpeed = HintSyncSpeed.Fast
             },
-            new Hint
-            {
+            new() {
                 YCoordinate = Config.MessageYCoordinate + 75,
                 Alignment = Config.MessageAlignment,
                 SyncSpeed = HintSyncSpeed.Fast
@@ -53,7 +47,7 @@ namespace TextChatMeow.MessageHandler
 
         public DisplayManager(VerifiedEventArgs ev)
         {
-            this._player = ev.Player;
+            _player = ev.Player;
 
             var playerDisplay = PlayerDisplay.Get(ev.Player);
             playerDisplay.AddHint(_textChatTip);
